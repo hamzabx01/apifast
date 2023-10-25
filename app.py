@@ -4,8 +4,16 @@ from bs4 import BeautifulSoup
 import requests
 from datetime import datetime
 import json, os
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace "*" with specific origins if needed
+    allow_methods=["*"],  # You can specify specific HTTP methods here
+    allow_headers=["*"],  # You can specify specific headers here
+)
 
 @app.get("/")
 def read_root():
